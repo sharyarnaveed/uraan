@@ -1,3 +1,11 @@
+.nav
+{
+    /* border: 2px solid blueviolet; */
+    height: 12.5%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 .main
 {
     /* border: 2px solid green; */

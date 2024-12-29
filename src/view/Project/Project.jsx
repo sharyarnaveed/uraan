@@ -15,8 +15,8 @@ function Project() {
 
 
       <main className="main_projects">
-        <section className="upper_project">
         <Navbar/>
+        <section className="upper_project">
 <div className="page_heading">
     <h1>Categories</h1>
 </div>
