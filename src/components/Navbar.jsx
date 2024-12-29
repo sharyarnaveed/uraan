@@ -1,6 +1,8 @@
 import React from 'react'
 import "./Navbar.css"
 import img from "../assets/Uraan-removebg.png"
+import { Link,NavLink } from 'react-router-dom'
+
 function Navbar() {
   return (
     <nav className="nav">
@@ -11,13 +13,13 @@ function Navbar() {
   <h1> Uraan</h1>
     </div>
     <ul className="the_nav_ul">
-        <a href="#">    <li className="nav_li">Home</li></a>
-        <a href="project.html">    <li className="nav_li">Projects</li></a>
-        <a href="#">    <li className="nav_li">About Us</li></a>
+        <Link to={"/"}>    <li className="nav_li">Home</li></Link>
+        <Link to={"/projects"} href="project.html">    <li className="nav_li">Projects</li></Link>
+        <Link to={"/aboutus"} href="#">    <li className="nav_li">About Us</li></Link>
     
     </ul>
     <div className="contact_nav">
-        <a href="#" className="contact_us_nav">Contact Us</a>
+        <Link to={"/submit"} href="#" className="contact_us_nav">Submit</Link>
     </div>
 </nav>
   )

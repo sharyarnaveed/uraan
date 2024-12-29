@@ -1,0 +1,96 @@
+.nav {
+    /* border: 2px solid blueviolet; */
+    height: 31.5%;
+    display: flex
+;
+    justify-content: space-around;
+    align-items: center;
+}
+.main_projects
+{
+    height: 100vh;
+    /* border: 2px solid red; */
+}
+.upper_project
+{
+    /* border: 2px solid orange; */
+    height: 42%;
+    background-image: url("https://images.unsplash.com/photo-1623479322729-28b25c16b011?w=2400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fGNvZGluZ3xlbnwwfHwwfHx8MA%3D%3D");
+    display: flex;
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex-direction: column;
+}
+
+.page_heading
+{
+    /* border: 2px solid yellow; */
+    height: 70%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px 20px;
+
+}
+.page_heading h1
+{
+    margin: 10px 30px;
+    font-size: 89px;
+    letter-spacing: 3px;
+    color: white;
+font-family: var(--lfo_font);
+}
+
+.lower_project
+{
+    height: 58%;
+    background-color: rgb(0, 0, 0);
+    /* border: 2px solid blueviolet; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.category_cards_a
+{
+    /* border: 2px solid green; */
+    height: 75%;
+    text-decoration: none;
+    border-radius:15px ;
+    width: 20%;
+}
+.category_cards
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:15px ;
+    /* border: 2px solid pink; */
+    background-image: url("https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=4000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODB8fGNvZGluZyUyMHdhbGxwYXBlcnxlbnwwfHwwfHx8MA%3D%3D");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.category_cards:hover 
+{
+    background-image: none;
+    background-color: rgba(255, 253, 253, 0.986);
+  color: black;
+
+}
+.category_cards:hover h2 {
+    color: black; /* Change the color to black when hovering */
+}
+
+.category_cards
+h2{
+    color: white;
+    font-size: 40px;
+    font-family: var(--lfo_font);
+}
+.category_cards
+h2 sup
+{
+    font-size:25px ;
+}
