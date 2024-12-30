@@ -1,0 +1,99 @@
+/* Styling the Submit Form Page */
+.form_conn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background:  url('https://images.unsplash.com/photo-1733325600531-74f1899491a9?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    /* height: 100%; */
+    width: 100%;
+    /* border: 2px solid purple; */
+}
+
+.submitform {
+   
+    height: 100vh;
+/* border: 2px solid red; */
+    font-family: Arial, sans-serif;
+    background-color: rgba(0, 0, 0, 0.938);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    color: #333;
+}
+
+.uploadproject {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* border: 2px solid #f57c00; */
+}
+
+.uploadproject input[type="text"],
+.uploadproject input[type="url"],
+.uploadproject textarea,
+.uploadproject select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.uploadproject textarea {
+    resize: none;
+}
+
+.uploadproject select {
+    cursor: pointer;
+}
+
+.uploadproject p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.uploadproject input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.uploadproject button {
+    background: #f51000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: flex-end;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.uploadproject button:hover {
+    background: #d60e00e7;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.uploadproject span {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.uploadproject textarea::placeholder,
+.uploadproject input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+

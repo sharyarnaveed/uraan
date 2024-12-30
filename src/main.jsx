@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import About from './view/About/About'
 import Layout from './Layout'
 import Project from './view/Project/Project'
+import Submit from './view/Submit/Submit'
 
 const router=createBrowserRouter(
   
@@ -25,6 +26,10 @@ const router=createBrowserRouter(
         {
           path: '/projects',
           element: <Project />,
+        },
+        {
+          path: '/submit',
+          element: <Submit/>,
         }
         ]
       }

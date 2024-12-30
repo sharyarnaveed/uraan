@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
 import "./Home.css"
+import { Link } from "react-router-dom";
 function Home() {
   return (
     <main className="main">
@@ -13,8 +14,8 @@ function Home() {
           </h1>
         </div>
         <div className="main_buttons">
-          <button className="project_button">Projects</button>
-          <button className="about_button">About Us</button>
+          <Link to={'/projects'} className="project_button">Projects</Link>
+          <Link to={'/aboutus'} className="about_button">About Us</Link>
         </div>
       </section>
     </main>
