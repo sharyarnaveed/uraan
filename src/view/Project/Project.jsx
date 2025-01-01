@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import "./project.css"
 function Project() {
     const categories=[
-        { year: "1st Year", id: 1, route:'/projects/1year' },
-        { year: "2nd Year", id: 2 , route:'/projects/2year'},
-        { year: "3rd Year", id: 3, route:'/projects/3year' },
-        { year: "4th Year", id: 4 , route:'/projects/4year'}
+        { year: "1st Year", id: 1, route:'1year' },
+        { year: "2nd Year", id: 2 , route:'2year'},
+        { year: "3rd Year", id: 3, route:'3year' },
+        { year: "4th Year", id: 4 , route:'4year'}
     ]
   return (
 
@@ -26,7 +26,7 @@ function Project() {
         {
             categories.map((category)=>
             (
-<Link to={category.route} key={category.id} className="category_cards_a">
+<Link to={`/projectdisplay/${category.route}`} key={category.id} className="category_cards_a">
 <div className="category_cards" >
     <h2> {category.year} </h2>
     </div>

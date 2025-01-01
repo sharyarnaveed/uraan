@@ -7,6 +7,7 @@ import About from './view/About/About'
 import Layout from './Layout'
 import Project from './view/Project/Project'
 import Submit from './view/Submit/Submit'
+import Cardpage from './view/Project/Cardpage'
 
 const router=createBrowserRouter(
   
@@ -30,6 +31,10 @@ const router=createBrowserRouter(
         {
           path: '/submit',
           element: <Submit/>,
+        },
+        {
+          path: '/projectdisplay/:id',
+          element: <Cardpage/>
         }
         ]
       }
