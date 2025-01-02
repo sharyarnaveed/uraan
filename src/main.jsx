@@ -8,6 +8,7 @@ import Layout from './Layout'
 import Project from './view/Project/Project'
 import Submit from './view/Submit/Submit'
 import Cardpage from './view/Project/Cardpage'
+import Detailproject from './view/Project/Detailproject'
 
 const router=createBrowserRouter(
   
@@ -35,6 +36,10 @@ const router=createBrowserRouter(
         {
           path: '/projectdisplay/:id',
           element: <Cardpage/>
+        },
+        {
+          path: '/projectdetail/:id/:pid',
+          element:<Detailproject/>,
         }
         ]
       }
