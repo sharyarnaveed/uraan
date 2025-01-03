@@ -1,0 +1,114 @@
+
+  
+  /* Background */
+  .container_signin {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #141E30, #243B55);
+    color: white;
+  }
+  
+  /* Sign In Box */
+  .signin-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* Title and Subtitle */
+  .signin-box h1 {
+    color: #F3F3F3;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    color: #B3B3B3;
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+  
+  /* Input Box */
+  .input-box {
+    position: relative;
+    margin-bottom: 25px;
+  }
+  
+  .input-box input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    background: none;
+    border: none;
+    border-bottom: 2px solid #6C63FF;
+    color: white;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input-box input:focus {
+    border-bottom: 2px solid #E94E77;
+  }
+  
+  .input-box label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: 1rem;
+    color: #B3B3B3;
+    pointer-events: none;
+    transition: transform 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+  }
+  
+  .input-box input:focus ~ label,
+  .input-box input:not(:placeholder-shown) ~ label {
+    transform: translateY(-20px);
+    font-size: 0.85rem;
+    color: #E94E77;
+  }
+  
+  /* Button */
+  .signin-btn {
+    width: 100%;
+    padding: 12px 0;
+    background: linear-gradient(135deg, #6C63FF, #E94E77);
+    border: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .signin-btn:hover {
+    background: linear-gradient(135deg, #E94E77, #6C63FF);
+  }
+  
+  /* Sign Up Link */
+  .signup-link {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #B3B3B3;
+  }
+  
+  .signup-link a {
+    color: #6C63FF;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .signup-link a:hover {
+    color: #E94E77;
+  }
+  

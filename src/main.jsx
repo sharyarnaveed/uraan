@@ -9,6 +9,13 @@ import Project from './view/Project/Project'
 import Submit from './view/Submit/Submit'
 import Cardpage from './view/Project/Cardpage'
 import Detailproject from './view/Project/Detailproject'
+import Signin from './view/Admin/Signin'
+import AdminPanel from './view/Admin/AdminPanel'
+import AdminLayout from './view/Admin/AdminLayout'
+import AdminProject from './view/Admin/AdminProject'
+import Approved from './view/Admin/Approved'
+import AdminDetail from './view/Admin/AdminDetail'
+
 
 const router=createBrowserRouter(
   
@@ -40,6 +47,32 @@ const router=createBrowserRouter(
         {
           path: '/projectdetail/:id/:pid',
           element:<Detailproject/>,
+        },
+        {
+          path: '/adminsignin',
+          element:<Signin/>,
+        } ,
+         {
+          path: '/adminpanel',
+          element:<AdminLayout/>,
+          children:[
+            {
+              path: '/adminpanel/',
+              element:<AdminPanel/>
+            },
+            {
+              path:"/adminpanel/projects",
+              element:<AdminProject/>
+            },
+            {
+              path:"/adminpanel/approved",
+              element:<Approved/>
+            },
+            {
+              path:"/adminpanel/projectdetail/:projectid",
+              element:<AdminDetail/>
+            }
+          ]
         }
         ]
       }
