@@ -8,3 +8,8 @@
     --nav_font:"Open Sans", sans-serif;
     --lfo_font:"logofont";
 }
+.error_message{
+  color: red;
+  font-size: .8rem;
+  font-family: var(--nav_font);
+}
