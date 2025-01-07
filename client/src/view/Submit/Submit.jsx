@@ -24,18 +24,18 @@ function Submit() {
 
   async function formsubmit (data) {
     console.log(data);
-// const formdata= new FormData();
+const formdata= new FormData();
 
 // formdata.append("projectname",data.projectname)
 // formdata.append("projectdescription",data.projectdescription)
 // formdata.append("programname",data.programname)
 // formdata.append("membersname",data.membersname)
 
-// formdata.append("image1",data.image1[0].name)
+formdata.append("image1",data.image1[0])
 // formdata.append("image2",data.image2[0].name)
 
 try {
-  const responce=await axios.post("http://localhost:3000/api/user/submitform",data)
+  const responce=await axios.post("http://localhost:3000/api/user/submitform",formdata)
 console.log(responce);
 } catch (error) {
   console.log(error);
@@ -126,7 +126,7 @@ console.log(responce);
 
             <span>
               <p>Upload Project Images</p>
-              {/* <input
+               <input
                 {...register("image1", {
                   required: { value: true, message: "Field Required" },
                 })}
@@ -138,7 +138,7 @@ console.log(responce);
                 <span className="error_message">
                   *{errors.image1.message}
                 </span>
-              )} */}
+              )} 
 
               {/* <input
                 {...register("image2", {
