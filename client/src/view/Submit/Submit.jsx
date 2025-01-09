@@ -26,10 +26,11 @@ function Submit() {
     console.log(data);
 const formdata= new FormData();
 
-// formdata.append("projectname",data.projectname)
-// formdata.append("projectdescription",data.projectdescription)
-// formdata.append("programname",data.programname)
-// formdata.append("membersname",data.membersname)
+formdata.append("projectname",data.projectname)
+formdata.append("projectdescription",data.projectdescription)
+formdata.append("programname",data.programname)
+formdata.append("membersname",data.membersname)
+formdata.append("githublink",data.githublink)
 
 formdata.append("image1",data.image1[0])
 // formdata.append("image2",data.image2[0].name)
@@ -64,7 +65,7 @@ console.log(responce);
             )}
 
             <select
-              {...register("prograname", {
+              {...register("programname", {
                 required: { value: true, message: "Field Required" },
               })}
             >
@@ -140,19 +141,7 @@ console.log(responce);
                 </span>
               )} 
 
-              {/* <input
-                {...register("image2", {
-                  required: { value: true, message: "Field Required" },
-                })}
-                type="file"
-             
-                id=""
-              />
-              {errors.image2 && (
-                <span className="error_message">
-                  *{errors.image2.message}
-                </span>
-              )} */}
+           
             </span>
             <button type="submit">Submit</button>
           </form>

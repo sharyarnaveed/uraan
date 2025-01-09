@@ -4,14 +4,25 @@ const up = multer({ dest: "public/" });
 
 const storage=multer.diskStorage({
     destination:function(req,file,cb){
-        cb(null,"./public")
+        if(file.mimetype=="image/jpeg"||file.mimetype=="image/png"||file.mimetype=="image/jpg")
+        {
+           
+            cb(null,"./public")
+
+        }
+        else{
+            console.log("wrong formate");
+            return null
+        }
+
     },
     filename:function(req,file,cb){
-        cb(null,file.originalname)
-        console.log(file.originalname);
+
+        cb(null, Date.now() + '-' + file.originalname);
+       
     }
 })
 
-console.log(storage);
 
-export const upload=multer({storage})
+
+export const upload=multer({storage:storage})
