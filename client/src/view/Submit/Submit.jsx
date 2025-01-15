@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./submit.css";
 import Navbar from "../../components/Navbar";
 import { useForm } from "react-hook-form";
-import axios from "axios"
+import axios from "axios";
+import Flashcard from "../../components/Flashcard.jsx";
 
 function Submit() {
+  const [ErrorMsg, SetErrorMsg] = useState("");
+  const [ErrorState, SetErrorState] = useState(false);
+  const [Success, SetSuccessMsg] = useState("");
+  const [SuccessState, SetSuccessState] = useState(false);
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -22,27 +27,46 @@ function Submit() {
     { id: 7, name: "AI" },
   ];
 
-  async function formsubmit (data) {
+  const year=[
+    { id: 1, name: "1year" },
+    { id: 2, name: "2year" },
+    { id: 3, name: "3year" },
+    {id:4,name:'4year'}
+  ]
+
+  async function formsubmit(data) {
     console.log(data);
-const formdata= new FormData();
+    const formdata = new FormData();
 
-formdata.append("projectname",data.projectname)
-formdata.append("projectdescription",data.projectdescription)
-formdata.append("programname",data.programname)
-formdata.append("membersname",data.membersname)
-formdata.append("githublink",data.githublink)
+    formdata.append("projectname", data.projectname);
+    formdata.append("projectdescription", data.projectdescription);
+    formdata.append("programname", data.programname);
+    formdata.append("year", data.year);
 
-formdata.append("image1",data.image1[0])
-// formdata.append("image2",data.image2[0].name)
+    formdata.append("membersname", data.membersname);
+    formdata.append("githublink", data.githublink);
 
-try {
-  const responce=await axios.post("http://localhost:3000/api/user/submitform",formdata)
-console.log(responce);
-} catch (error) {
-  console.log(error);
-}
+    formdata.append("image1", data.image1[0]);
+    // formdata.append("image2",data.image2[0].name)
 
-
+    try {
+      const responce = await axios.post(
+        "http://localhost:3000/api/user/submitform",
+        formdata
+      );
+      console.log(responce.data);
+      if (responce.data.success === false) {
+        SetErrorState(true);
+        SetErrorMsg(responce.data.message);
+        SetSuccessState(false);
+      } else {
+        SetSuccessState(true);
+        SetSuccessMsg(responce.data.message);
+        SetErrorState(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -51,11 +75,26 @@ console.log(responce);
         <Navbar />
         <div className="form_conn">
           <form className="uploadproject" onSubmit={handleSubmit(formsubmit)}>
+            {ErrorState && (
+              <div style={{ width: "100%", height: "50px" }}>
+                <Flashcard color={"red"} msg={ErrorMsg} />
+              </div>
+            )}
+            {SuccessState && (
+              <div style={{ width: "100%", height: "50px" }}>
+                <Flashcard color={"green"} msg={Success} />
+              </div>
+            )}
+
             <input
               type="text"
               placeholder=" Project Name"
               {...register("projectname", {
                 required: { value: true, message: "Field Required" },
+                pattern: {
+                  value: /^[a-zA-Z0-9 ]+$/,
+                  message: "Only Letter and Number are Allowed",
+                },
               })}
             />
             {errors.projectname && (
@@ -81,9 +120,38 @@ console.log(responce);
               </span>
             )}
 
+<select name=""
+{...register("year",{
+  required:{value:true,message:"Field Required"}
+})}
+
+id=""
+>
+
+{
+  year.map((theyear)=>
+  (
+    <option key={theyear.id} value={theyear.name}>
+{theyear.name}
+
+    </option>
+  ))
+}
+
+</select>
+{errors.year && (
+              <span className="error_message">
+                *{errors.year.message}
+              </span>
+            )}
+
             <textarea
               {...register("projectdescription", {
                 required: { value: true, message: "Field Required" },
+                pattern: {
+                  value: /^[a-zA-Z0-9 ]+$/,
+                  message: "Only Letter and Number are Allowed",
+                },
               })}
               rows={10}
               id=""
@@ -100,6 +168,10 @@ console.log(responce);
               name=""
               {...register("membersname", {
                 required: { value: true, message: "Field Required" },
+                pattern: {
+                  value: /^[a-zA-Z ]+$/,
+                  message: "Only Letter Are Allowed",
+                },
               })}
               rows={10}
               id=""
@@ -127,21 +199,16 @@ console.log(responce);
 
             <span>
               <p>Upload Project Images</p>
-               <input
+              <input
                 {...register("image1", {
                   required: { value: true, message: "Field Required" },
                 })}
                 type="file"
-           
                 id=""
               />
               {errors.image1 && (
-                <span className="error_message">
-                  *{errors.image1.message}
-                </span>
-              )} 
-
-           
+                <span className="error_message">*{errors.image1.message}</span>
+              )}
             </span>
             <button type="submit">Submit</button>
           </form>

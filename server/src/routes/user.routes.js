@@ -6,4 +6,8 @@ const router=Router();
 
 router.route('/submitform').post(upload.single('image1'),submitform)
 
+
+
+
+
 export default router
