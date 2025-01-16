@@ -10,10 +10,11 @@ function Submit() {
   const [ErrorState, SetErrorState] = useState(false);
   const [Success, SetSuccessMsg] = useState("");
   const [SuccessState, SetSuccessState] = useState(false);
-
+const [buttonState,SetButtonState]=useState(false)
   const {
     register,
     handleSubmit,
+    resetField,
     formState: { errors },
   } = useForm();
 
@@ -36,6 +37,7 @@ function Submit() {
 
   async function formsubmit(data) {
     console.log(data);
+    SetButtonState(true)
     const formdata = new FormData();
 
     formdata.append("projectname", data.projectname);
@@ -63,9 +65,20 @@ function Submit() {
         SetSuccessState(true);
         SetSuccessMsg(responce.data.message);
         SetErrorState(false);
+        resetField("projectname")
+        resetField("projectdescription")
+        resetField("year")
+        resetField("membersname")
+        resetField("githublink")
+        resetField("image1")
+
+        
       }
     } catch (error) {
       console.log(error);
+    }
+    finally{
+      SetButtonState(false)
     }
   }
 
@@ -210,7 +223,9 @@ id=""
                 <span className="error_message">*{errors.image1.message}</span>
               )}
             </span>
-            <button type="submit">Submit</button>
+            <button className="submitbutton" disabled={buttonState} type="submit">
+              {buttonState?"Submitting":"Submit"}
+            </button>
           </form>
         </div>
       </main>

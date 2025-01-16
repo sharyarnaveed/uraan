@@ -10,6 +10,10 @@
     width: 100%;
     /* border: 2px solid purple; */
 }
+.submitbutton:disabled{
+background-color: #ccc;
+color: black;
+}
 
 .submitform {
    
