@@ -1,3 +1,4 @@
+import  jwt  from "jsonwebtoken";
 import connect from "../database/conn.database.js";
 import bcrypt from "bcryptjs";
 
@@ -22,23 +23,46 @@ if(rows.length>0)
         success: false,
       });
     }
+const user_id=rows[0].admin_id
 
-    return res.json({
-      message: "Login Successfull",
-      success: true,
-    });
+
+const accessToken=await jwt.sign(
+  {id:user_id},
+  process.env.ACCESS_TOKEN,
+  {expiresIn:process.env.ACCESS_TIME}
+)
+
+const refreshToken=await jwt.sign(
+  {id:user_id},
+  process.env.REFRESH_TOKEN,
+  {expiresIn:process.env.REFRESH_TIME}
+)
+
+const options={
+  httpOnly:true,
+  secure:true,
+  sameSite:"strict",
+  maxAge:7*24*60*60*1000
+
 }
+
+res
+.cookie("accessToken",accessToken,options)
+.cookie("refreshToken",refreshToken,options)
    
 return res.json({
-    message:"Invalid Credentials",
-    success:false
-})
+  message: "Login Success",
+  success: true,
+
+});  
 
 
+}
 
   } catch (error) {
     console.log("error in signin", error);
   }
+  
 };
 
 export { adminsignin };

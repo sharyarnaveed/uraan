@@ -31,11 +31,11 @@ if(theValidation===false)
 
 
 const img1=req.file.path;
-
+const status="undefined"
 
 try {
-    const sql=`INSERT INTO projects (project_name,project_descrp,team_members,link,img1,program_name,year) VALUES (?,?,?,?,?,?,?)`;
-    const [responce]=await thedb.query(sql,[projectname,projectdescription,membersname,githublink,img1,programname,year])
+    const sql=`INSERT INTO projects (project_name,project_descrp,team_members,link,img1,program_name,year,status) VALUES (?,?,?,?,?,?,?,?)`;
+    const [responce]=await thedb.query(sql,[projectname,projectdescription,membersname,githublink,img1,programname,year,status])
 console.log(responce);
 res.json({
     message:"Project Added Successfully",
@@ -43,6 +43,10 @@ res.json({
 })
 } catch (error) {
     console.log("error in saving project to database",error);
+    res.json({
+        message:"Error in submittion",
+        success:false
+    })
 }
 
 

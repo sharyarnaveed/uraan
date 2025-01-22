@@ -22,7 +22,7 @@ function Signin() {
       console.log(responce);
       if (responce.data.success === true) {
         // useNavigate().push("/admin/dashboard")
-        navigate("/admin");
+        navigate("/adminpanel/");
       } else {
       SetSigninErrorBool(true)
       SeterrorMsg(responce.data.message)
