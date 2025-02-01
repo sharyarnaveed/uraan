@@ -1,24 +1,57 @@
-import React from 'react'
-import "./AdminPanel.css"
-import img from "../../assets/heroimg.jpg"
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./AdminPanel.css";
+import img from "../../assets/heroimg.jpg";
+import { useParams } from "react-router-dom";
+import Callapi from "../../api";
 function AdminDetail() {
-  const theimg=img
+  const theimg = img;
+  const navigate = useNavigate();
+  const api = Callapi(navigate);
+  const { projectid } = useParams();
+  const [projectDetails, SetDetails] = useState([]);
+  useEffect(() => {
+    const getdetails = async (id) => {
+      try {
+        const responce = await api.post("/api/admin/projectdetails", {
+          id: id,
+        });
+        console.log(responce.data);
+
+        SetDetails(responce.data[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getdetails(projectid);
+  }, []);
+
   return (
-<>
-<main class="main-content-detail">
-      <header>
-        <h1>Project Details</h1>
-      </header>
+    <>
+      <main className="main-content-detail">
+        <section className="content">
+          <img
+            src={theimg}
+            alt="Project Detail Image"
+            className="detail-image"
+          />
+          <h2>{projectDetails.project_name}</h2>
 
-      <section class="content">
-        <img src={theimg} alt="Project Detail Image" class="detail-image"/>
-        <h2>Project Title</h2>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis ratione fugiat voluptatum beatae, ab accusamus eveniet velit nisi a, mollitia blanditiis, pariatur nostrum similique veniam optio aliquam consequatur dicta ex officia exercitationem. Autem necessitatibus minima vel. Corrupti at praesentium pariatur sit ab exercitationem, voluptas sed veritatis labore voluptatibus. Nesciunt, repudiandae expedita ducimus repellendus excepturi dicta molestiae. Rem harum non voluptatem, molestias illo hic culpa quisquam blanditiis praesentium quidem soluta, reiciendis, tempore unde itaque alias obcaecati nam nostrum quod sint nisi modi temporibus nulla vel sapiente! Earum modi unde natus corporis, ipsa voluptate consequatur tenetur dolorum delectus tempore? Accusantium itaque aliquid deserunt natus laborum aliquam facilis, voluptatem perferendis, obcaecati nostrum sapiente iusto eos officia dolor porro! Repudiandae, quia voluptatum? Optio debitis saepe ea corporis reiciendis quasi cum. Suscipit fuga, voluptas nostrum temporibus libero ad laboriosam ducimus consequuntur ipsa ratione laborum, illo quaerat recusandae sint atque ex sapiente? Soluta, facere doloremque? Assumenda, molestiae corrupti repudiandae repellendus nobis nesciunt quas iste qui magni architecto! Dolorum illum tenetur unde eaque, eligendi consequuntur earum inventore accusantium ipsa consectetur consequatur hic, maxime delectus, commodi facilis totam placeat enim? Repellat incidunt rerum minima cumque vel iure nesciunt perspiciatis aliquid, esse at sit, placeat blanditiis magnam accusantium cum!</p>
-      </section>
-    </main>
-
-</>
-  )
+          <p>
+            <b>Team Memebers:</b> {projectDetails.team_members}
+          </p>
+          <p>
+            <b> Year:</b> {projectDetails.year} - <b>Program:</b>{" "}
+            {projectDetails.program_name}
+          </p>
+          <p>
+            <b>Project Description:</b> {projectDetails.project_descrp}
+          </p>
+        </section>
+      </main>
+    </>
+  );
 }
 
-export default AdminDetail
+export default AdminDetail;

@@ -12,24 +12,43 @@ function AdminProject() {
   
   const imgage=img;
   const [pdata,setdata]=useState([]);
-  useEffect(()=>
+  const getproject=async()=>
     {
-      const getproject=async()=>
-      {
 try {
-  const responce=await api.post("/api/admin/getprjects");
-  console.log(responce.data);
-  setdata(responce.data.projects);
+const responce=await api.post("/api/admin/getprjects");
+console.log(responce.data);
+setdata(responce.data.projects);
 } catch (error) {
-  console.log("cannot get projects",error);
-  
-}
-      }
- 
+console.log("cannot get projects",error);
 
+}
+    }
+
+ useEffect(()=>
+    {
+  
       getproject();
   
     },[])
+
+
+const approvedproject=async(id)=>
+{
+  try {
+    console.log(id);
+    
+    const responce=await axios.post("/api/admin/approveproject",{id:id})
+    console.log(responce.data);
+    
+await getproject()
+
+
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
+
     return (
    <>
 
@@ -38,7 +57,7 @@ try {
         <h1>Projects</h1>
       </header>
 
-      <section class="content project-cards">
+      <section className="content project-cards">
        {
         pdata.map((item)=>
         (
@@ -47,7 +66,9 @@ try {
           <h3>{item.project_name}</h3>
           <p>{item.project_descrp}</p>
           <div className="card-buttons">
-            <button className="approve-btn">Approve</button>
+            <button onClick={()=>{
+              approvedproject(item.project_id)
+            }} className="approve-btn">Approve</button>
             <button className="reject-btn">Not Approved</button>
             <Link to={`/adminpanel/projectdetail/${item.project_id}`} className="details-btn">Details</Link>
           </div>

@@ -20,6 +20,25 @@ const thedb=await connect()
     }
 }
 
+const approveprojects=async(req,res)=>
+{
+    try {
+        const {id}=req.body
+        console.log(id);
+        
+const thedb=await connect()
+const sql="UPDATE projects set status=? where project_id=?";
+
+const [result]=await thedb.query(sql,["approved",id]);
+
+res.json("Project approved")
 
 
-export {GetProjects}
+
+        } catch (error) {
+        console.log("error in appriving",error);
+        
+    }
+}
+
+export {GetProjects,approveprojects}
