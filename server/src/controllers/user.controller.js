@@ -54,5 +54,22 @@ res.json({
 
 
 
+const projectlist=async(req,res)=>
+{
+    try {
+        const {year}=req.body
+console.log(year);
+const thedb=await connect();
+const sql="SELECT * FROM PROJECTS WHERE year=? and status=?";
+const [responce]=await thedb.query(sql,[year,"approved"]);
+return res.json(responce)
 
-export {submitform}
+
+    } catch (error) {
+        console.log("error in getting projects",error);
+        
+    }
+}
+
+
+export {submitform,projectlist}

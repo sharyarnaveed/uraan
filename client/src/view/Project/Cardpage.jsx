@@ -1,21 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import "./Card.css";
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Cardpage() {
     const {id}=useParams()
     const navigate=useNavigate();
+const [cards,setData]=useState([])
 
-const cards=[
-    {name:"project1",id:1},
-    {name:"project1",id:2},
-    {name:"project1",id:3},
-    {name:"project1",id:4}
 
-]
 
+const getprojectlist=async(theid)=>
+{
+    try {
+        
+console.log(theid);
+const responce=await axios.post("/api/user/getprojects",{year:theid});
+console.log(responce.data);
+setData(responce.data)
+
+
+    } catch (error) {
+        console.log("error in getting projects",error);
+        
+    }
+}
+
+
+useEffect(()=>
+{
+getprojectlist(id)
+
+},[])
 
   return (
       <>
@@ -31,14 +49,13 @@ const cards=[
       <div className="card-container">
         {
             cards.map((card)=>(
-                <div key={card.id} className="card">
+                <div key={card.project_id} className="card">
                 <div className="card-image">
-                    <img src="https://via.placeholder.com/300x200" alt="Project Image"/>
+                    {/* <img src="https://via.placeholder.com/300x200" alt="Project Image"/> */}
                 </div>
                 <div className="card-content">
-                    <h2 className="card-title">{card.name}</h2>
-                    <p className="card-description">This is a brief description of the project. It's an awesome project that you'll love.</p>
-                    <button onClick={()=>{navigate(`/projectdetail/${id}/${card.id}`)}} className="card-button">View Details</button>
+                    <h2 className="card-title">{card.project_name}</h2>
+                    <button onClick={()=>{navigate(`/projectdetail/${id}/${card.project_id}`)}} className="card-button">View Details</button>
                 </div>
             </div>
            

@@ -41,4 +41,30 @@ res.json("Project approved")
     }
 }
 
-export {GetProjects,approveprojects}
+
+const notapproved=async(req,res)=>
+{
+    try {
+        
+const {id}=req.body;
+console.log(id);
+
+const thedb=await connect();
+
+const sql="UPDATE projects set status=? where project_id=?";
+const [result]= await thedb.query(sql,["notapproved",id])
+
+
+res.json({
+    message:"Project Not Approved",
+success:true
+})
+
+    } catch (error) {
+        console.log("error in not approving",error);
+        
+    }
+}
+
+
+export {GetProjects,approveprojects,notapproved}
